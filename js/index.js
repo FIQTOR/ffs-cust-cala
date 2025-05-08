@@ -1,5 +1,5 @@
 const title = document.querySelector('.title')
-const text = `I Have Something`.split('')
+const text = Array.from('happy mensive love cala 🤍')
 
 // Create container for better responsive layout
 title.style.display = 'flex'
@@ -9,9 +9,14 @@ title.style.gap = '0.5rem'
 
 for (let index = 0; index < text.length; index++) {
   if (text[index] !== ' ') {
-    title.innerHTML += `<span>${text[index]}</span>`
+    // Use textContent instead of innerHTML for emoji support
+    const span = document.createElement('span')
+    span.textContent = text[index]
+    title.appendChild(span)
   } else {
-    title.innerHTML += `<span style='width: 1rem'></span>`
+    const space = document.createElement('span')
+    space.style.width = '1rem'
+    title.appendChild(space)
   }
 }
 
